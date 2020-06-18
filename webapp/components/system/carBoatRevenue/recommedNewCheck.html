@@ -130,7 +130,7 @@
             </div>
             <div id="search" class="" style="display: flex;justify-content: flex-end;">
                 <div class="searchBtn">
-                    <div>查询</div>
+                    <div >查询</div>
                 </div>
             </div>
 
@@ -209,44 +209,59 @@
                             field: 'QYMC',
                             title: '企业名称',
                             width:230,
+                            templet: '<div><span title="{{# if(d.QYMC!=undefined){ }}{{d.QYMC}}{{# }}}">{{# if(d.QYMC!=undefined){ }}{{d.QYMC}}{{# }}}</span></div>'
+
+
 
                         }, {
                             field: 'CLXH',
                             title: '车辆型号',
                             width:170,
+                            templet: '<div><span title="{{# if(d.CLXH!=undefined){ }}{{d.CLXH}}{{# }}}">{{# if(d.CLXH!=undefined){ }}{{d.CLXH}}{{# }}}</span></div>'
+
                         }, {
                             field: 'CLCPMC',
                             title: '车辆名称',
+                            // width:110,
+                            templet: '<div><span title="{{# if(d.CLCPMC!=undefined){ }}{{d.CLCPMC}}{{# }}}">{{# if(d.CLCPMC!=undefined){ }}{{d.CLCPMC}}{{# }}}</span></div>'
+
                         }, {
                             field: 'CLSB',
                             title: '车辆商标',
-                            width:210,
+                            width:90,
+                            templet: '<div><span title="{{# if(d.CLSB!=undefined){ }}{{d.CLSB}}{{# }}}">{{# if(d.CLSB!=undefined){ }}{{d.CLSB}}{{# }}}</span></div>'
+
                         }, {
                             field: 'CLLB',
                             title: '车辆类别',
-                            width: 100
+                            width: 90,
+                            templet: '<div><span title="{{# if(d.CLLB!=undefined){ }}{{d.CLLB}}{{# }}}">{{# if(d.CLLB!=undefined){ }}{{d.CLLB}}{{# }}}</span></div>'
+
+
                         },
                             {
                                 field: 'LRSHSJ',
                                 title: '列入审核日期',
-                                width:120,
+                                width:115,
+                                templet: '<div><span title="{{# if(d.LRSHSJ!=undefined){ }}{{d.LRSHSJ}}{{# }}}">{{# if(d.LRSHSJ!=undefined){ }}{{d.LRSHSJ}}{{# }}}</span></div>'
+
                             },
                             {
                                 field: 'SBLB',
                                 title: '申报类型',
-                                width:90,
+                                // width:90,
                                 templet: function(item){
                                     if(item.SBLB == "T"){
-                                        return "推荐目录新产品"
+                                        return "<div title='推荐目录新产品'>推荐目录新产品</div>"
                                     }
                                     else if(item.SBLB == "K"){
-                                        return "推荐目录变更扩展"
+                                        return "<div title='推荐目录变更扩展'>推荐目录变更扩展</div>"
                                     }
                                     else if(item.SBLB == "G"){
-                                        return "购置税"
+                                        return "<div title='购置税'>购置税</div>"
                                     }
                                     else if(item.SBLB == "C"){
-                                        return "车船税"
+                                        return "<div title='车船税'>车船税</div>"
                                     }
                                 }
                             },
@@ -295,7 +310,9 @@
 
                                     }
                                     html += "</div>"
+                                    // return "啊啊" +"\n" +"aaa"
                                     return html
+
                                 },
                             },
 
@@ -349,11 +366,11 @@
                     })
                         $(".layui-table-cell").css(
                              {
-                            "vertical-align": "middle",
+                            // "vertical-align": "middle",
                             "height": "auto",
-                            "overflow": "visible",
-                            "text-overflow": "inherit",
-                            "white-space": "normal",
+                            // "overflow": "visible",
+                            // "text-overflow": "inherit",
+                            // "white-space": "normal",
                         }
                         )
                 }
@@ -380,7 +397,7 @@
 
                 // 判断操作类型
                 if (layEvent === 'zsBtn') {
-                    $("#main").load('components/system/carBoatRevenue/Tab.html', function () {
+                    $("#main").load('components/system/assetRevenueCheck/Tab.html', function () {
                     });
                 }
             });
