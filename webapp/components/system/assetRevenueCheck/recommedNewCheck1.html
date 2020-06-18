@@ -185,7 +185,7 @@
           },
           {
             title: '类别', field: 'jylb', width: 100, templet: function (d) {
-              if (d.jylb == '○') {
+              if (d.jylb == '●') {
                 return '<img src="../../../assets/images/表格/椭圆形.png" alt="">'
               } else if (d.jylb == '■') {
                 return '<img src="../../../assets/images/表格/矩形.png" alt="">'
@@ -216,11 +216,10 @@
             }
           },
           {
-            title: '不符合原因', field: 'wtgyy', width: 400,
+            title: '不符合原因', field: 'wtgyy', width: 300,
             templet: '<div><span title="{{# if(d.wtgyy!=undefined){ }}{{d.wtgyy}}{{# }}}">{{# if(d.wtgyy!=undefined){ }}{{d.wtgyy}}{{# }}}</span></div>'
           },
           {
-            fixed: 'right',
             title: '判断依据', 
             field: 'jytj',
             templet: '<div><span title="{{# if(d.jytj!=undefined){ }}{{d.jytj}}{{# }}}">{{# if(d.jytj!=undefined){ }}{{d.jytj}}{{# }}}</span></div>'
