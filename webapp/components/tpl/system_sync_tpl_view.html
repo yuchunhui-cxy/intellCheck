@@ -1,0 +1,76 @@
+<div class="layui-tpl-container" id="syncDetail">
+    <!-- 数据表格顶部控制栏 -->
+    <table id="tableContent-syncView" lay-filter="tableContent-syncView" class="layui-table"></table>
+</div>
+<script>
+    var syncManageId = window.syncManageId;
+    //初始化layui
+    layui.use(['table'], function() {
+        var table = layui.table,
+            form = layui.form,
+            config = layui.config,
+            laydate = layui.laydate,
+            admin = layui.admin;
+
+        //渲染表格部分
+        var renderTable = function(search) {
+            if (!search) {
+                search = {};
+            }
+
+            table.render({
+                elem: '#tableContent-syncView',
+                id: 'tableContent-syncView',
+                url: admin.formatUrl('/api/sys/syncDetail/listSyncDetailBySyncId' +
+                    '?syncManageId=' + syncManageId),
+
+                // 格式化后台返回的数据
+                method: 'post',
+                parseData: function(res) { // res及为原始返回的数据
+                    //返回结果，进行渲染表格
+                    return {
+                        "code": res.respCode, //解析接口状态
+                        "msg": res.message, //解析提示文本
+                        "count": res.data.count, //解析数据长度
+                        "data": res.data.list //解析数据列表
+                    };
+                },
+                height: 465,
+                cols: [
+                    [{
+                        type: 'numbers'
+                    }, {
+                        field: 'preName',
+                        title: '参数名称（同步前）'
+                    }, {
+                        field: 'modifyName',
+                        title: '参数名称（同步后）',
+                        width: 360
+                    }, {
+                        field: 'operateType',
+                        title: '同步类型',
+                        width: 90,
+                        align: 'center'
+                    }]
+                ],
+                cellMinWidth: 90,
+                page: {
+                    layout: ['limit', 'count', 'prev', 'page', 'next', 'skip']
+                },
+                request: {
+                    pageName: 'pageNo',
+                    limitName: 'pageSize'
+                },
+                where: search
+            });
+
+        };
+
+        // 初始化，执行一次渲染表格
+        renderTable();
+
+        // 将 table ID 存入数组
+        layui.admin.addTableCache('tableContent-syncView');
+
+    });
+</script>

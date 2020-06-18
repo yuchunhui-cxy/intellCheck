@@ -1,0 +1,446 @@
+/* 任务审核--审核 */
+
+#handleTaskWinContent {
+    background-color: #fff;
+}
+
+.m-navigation {
+    color: #606266;
+}
+
+.m-navigation .back {
+    padding: 0 10px 0 5px;
+    cursor: pointer;
+}
+
+.m-navigation .type {
+    padding-left: 10px;
+    color: rgba(48, 49, 51, 1);
+    font-weight: 500;
+}
+
+.params_box_body_left {
+    width: 42%;
+}
+
+.params_box_body_right {
+    width: 58%;
+}
+
+.params_box_body_left,
+.params_box_body_right {
+    height: 100%;
+    box-sizing: border-box;
+    float: left;
+}
+
+.params_box_body_left #regionZTree {
+    border: 1px solid #e6e6e6;
+    margin: 10px 20px 0 0;
+    background-color: #fafafa;
+    padding: 15px 0 0 15px;
+    color: #333;
+    flex: 1;
+    overflow-y: auto;
+    height: 537px;
+}
+
+.params_box_body_right .m-params {
+    border: 1px solid rgba(235, 238, 245, 1);
+    margin: 10px 0 0 0;
+    /*background-color: #fafafa;*/
+    color: #333;
+}
+
+.params_box_body_right #params {
+    padding: 15px 0 0 15px;
+    flex: 1;
+    overflow-y: auto;
+    height: 483px;
+}
+
+#params::-webkit-scrollbar,
+#regionZTree::-webkit-scrollbar {
+    width: 6px;
+}
+
+
+/*定义滑块颜色、内阴影及圆角*/
+
+#regionZTree::-webkit-scrollbar-thumb,
+#params::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+
+/*定义滚动条的轨道颜色、内阴影及圆角*/
+
+#regionZTree::-webkit-scrollbar-track,
+#params::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.params_body_left_btitle,
+.params_body_right_title {
+    /*line-height: 36px;*/
+    /*padding-left: 17px;*/
+    /*margin-left: -8px;*/
+    /*background: linear-gradient(45deg, #229fff, transparent);*/
+    /*color: white;*/
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(51, 51, 51, 1);
+    line-height: 20px;
+}
+
+.params_box_body_right {
+    /*padding: 0 0 35px 10px;*/
+    border-right: none;
+    height: 100%;
+    position: relative;
+}
+
+#allcheck,
+.params_set_people_body {
+    margin-top: 10px;
+}
+
+.params_box_body_right .layui-input-block button {
+    width: 101px;
+    height: 30px;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 4px;
+    border: 1px solid rgba(54, 168, 255, 1);
+    font-size: 14px;
+    color: rgba(54, 168, 255, 1);
+    display: block;
+}
+
+.params_box_body_right .uploadList {
+    width: 352px;
+    height: 70px;
+    background: rgba(250, 250, 250, 1);
+    margin-top: 10px;
+    position: relative;
+}
+
+.params_box_body_right .uploadList .startUpload {
+    width: 60px;
+    height: 30px;
+    background: rgba(54, 168, 255, 1);
+    border-radius: 4px;
+    border: 1px solid rgba(54, 168, 255, 1);
+    font-size: 14px;
+    color: rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 20px;
+    right: 10px;
+}
+
+.params_box_body_right .uploadList .startUpload_disable {
+    border: 1px solid #e6e6e6;
+    background-color: #FBFBFB;
+    color: #C9C9C9;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.params_box_body_right .left {}
+
+.params_box_body_right .left img {
+    width: 99px;
+    height: 58px;
+    margin: 5px;
+}
+
+.params_box_body_right .left .middle {
+    position: absolute;
+    top: 8px;
+    left: 109px;
+}
+
+.params_box_body_right .left .name {
+    width: 152px;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(48, 49, 51, 1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+    margin-bottom: 11px;
+}
+
+.params_box_body_right .left i.icon_edit {
+    background: url(assets/images/upload_edit.png) center center;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.params_box_body_right .left i.icon_delete {
+    background: url(assets/images/upload_del.png) center center;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+}
+
+.params_box_body_right .left .middle .name .edit_name {
+    height: 20px;
+    padding-left: 5px;
+}
+
+.params_box_body_right .layui-input-block a.param {
+    line-height: 30px;
+}
+
+
+/* .param .layui-form-checkbox:first-of-type {
+    margin-top: 5px;
+} */
+
+.params_box_body_right .layui-input,
+.layui-select {
+    width: 352px;
+    height: 38px;
+    border-radius: 4px;
+    border: 1px solid rgba(220, 223, 230, 1);
+}
+
+.params_box_body_right .layui-input-block-long {
+    width: 352px;
+    margin-left: 5px;
+    clear: both;
+}
+
+.params_box_body_right .btn_save {
+    margin: 10px 0;
+    width: 100%;
+    /*position: absolute;*/
+    /*bottom: 10px;*/
+    text-align: center;
+}
+
+.params_box_body_right .btn_save #saveDataBtn {
+    color: rgba(255, 255, 255, 1);
+    width: 160px;
+    height: 34px;
+    background: rgba(54, 168, 255, 1);
+    border-radius: 4px;
+}
+
+
+/* .layui-form-label{
+    padding: 5px 10px;
+    width: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+} */
+
+.layui-card-body {
+    padding: 10px 15px;
+}
+
+.layui-form-label {
+    text-align: left;
+    padding-left: 8px;
+}
+
+.layui-form-label-long {
+    width: auto;
+    line-height: 20px;
+    padding-left: 5px;
+    /*width: auto;*/
+}
+
+.param[no-operate],
+.layui-disabled {
+    background: #f0f0f0;
+}
+
+
+/*.divColor:hover{*/
+
+
+/*    background-color: #B5D7F3 ;*/
+
+
+/*}*/
+
+#rightClickMenu {
+    display: none;
+    position: fixed;
+    left: 100px;
+    top: 100px;
+    width: 35px;
+    padding: 5px 10px;
+    background: white;
+    border: 1px solid lightgray;
+    text-align: center;
+}
+
+#rightClickMenu button {
+    margin: 1px 0;
+}
+
+.ztree li {
+    padding: 4px 0 0 0 !important;
+}
+
+.params_box_body_right .parameterInformation {
+    display: inline-block;
+}
+
+.layui-layer-btn {
+    text-align: center;
+}
+
+.layui-layer-content {
+    text-align: center;
+}
+
+
+/* 取消按钮 */
+
+.cancelButtonClass {
+    display: none;
+}
+
+
+/* 通过-初始化隐藏驳回按钮 */
+
+.initializationRejectButtonClass {
+    display: none;
+}
+
+
+/* 显示取消按钮 */
+
+.initializationCancelButtonClass {
+    display: none;
+}
+
+.initializationAdoptButtonClass {
+    border: 1px solid #e6e6e6;
+    background-color: #FBFBFB;
+    color: #C9C9C9;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.initializationAdoptButtonClass:hover {
+    border: 1px solid #e6e6e6;
+    background-color: #FBFBFB;
+    color: #C9C9C9;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.intRejected {
+    border: 1px solid #e6e6e6;
+    background-color: #FBFBFB;
+    color: #C9C9C9;
+    cursor: not-allowed;
+    opacity: 1;
+    margin-left: 0 !important;
+}
+
+.intRejected:hover {
+    border: 1px solid #e6e6e6;
+    background-color: #FBFBFB;
+    color: #C9C9C9;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.intAdopt {
+    display: none;
+}
+
+.notApproved {
+    border: 1px solid #e6e6e6;
+    background-color: #FBFBFB;
+    color: #C9C9C9;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.notApproved:hover {
+    border: 1px solid #e6e6e6;
+    background-color: #FBFBFB;
+    color: #C9C9C9;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+
+/* 驳回内容样式 */
+
+
+/* 驳回内容样式 */
+
+.reject-parent {
+    position: relative;
+}
+
+.popover-plain {
+    max-width: 200px;
+    transform-origin: center top;
+    z-index: 2030;
+    position: absolute;
+    top: 0px;
+    left: 365px;
+    background: #fff;
+    color: #606266;
+    border-radius: 4px;
+    border: 1px solid #ebeef5;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.popover-plain .popover-title {
+    color: #303133;
+    font-size: 16px;
+    line-height: 1;
+    margin-bottom: 12px;
+    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+}
+
+.popover-plain .popper__arrow {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 6px;
+    left: -5px;
+    top: 30px;
+    margin-right: 3px;
+    border-right-color: #ebeef5;
+    border-left-width: 0;
+}
+
+.popover-plain .popper__arrow:after {
+    bottom: 1px;
+    margin-left: -6px;
+    border-top-color: #fff;
+    border-bottom-width: 0;
+    content: " ";
+    border-width: 6px;
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}

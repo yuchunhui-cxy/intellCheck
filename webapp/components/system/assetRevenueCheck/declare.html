@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+       .Box1{
+            background:rgba(255,255,255,1);
+            border-radius:2px;
+            padding: 20px 28px 19px 24px;
+        }
+        .Box1 .title1{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(0,0,0,0.45);
+            line-height:22px;
+            display: inline-block;
+        }
+        .Box1 .label1{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            line-height:22px;
+            color:#4A90E2;
+        }
+        .Box1 .content1{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:#000000;
+            line-height:22px;
+            margin-right: 30px;
+        }
+        .title2{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color: #000000;
+            line-height:22px;
+            display: inline-block;
+            font-size: 14px;
+        }
+    .zhushen{
+        width: 50px;
+      height: 24px;
+      background: rgba(244, 251, 255, 1);
+      border-radius: 2px;
+      border: 1px solid rgba(172, 220, 255, 1);
+      font-size: 14px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: rgba(74, 144, 226, 1);
+      line-height: 20px;
+      cursor: pointer;
+    }
+    </style>
+</head>
+<body>
+    <div class="tabBox">
+        <div class="Box1" >
+          <div class="title1" id="cancel" >智慧审核校验 /<div class="title2">  申报数据合规性校验</div></div>
+          <div style="display: flex;align-items: center;margin-top: 10px;">
+              <div class="label1">企业名称：</div>
+              <div class="content1" id="QYMC">mggg</div>
+              <div class="label1">产品型号：</div>
+              <div class="content1" id="CLXH">型号</div>
+              <div class="label1">产品名称：</div>
+              <div class="content1" id="CLCPMC">明后才能</div>
+          </div>
+          <div style="margin-top: 14px;" >
+            <table class="layui-hide" id="declareTable" lay-filter="declareTable"></table>
+          </div>
+        </div>
+        
+      </div>
+</body>
+    <script>
+        layui.use(['table', 'form', 'element', 'admin'], function () {
+            var table = layui.table;
+            var form = layui.form;
+            var element = layui.element;
+            var admin = layui.admin;
+            // var data = [{test: 111,type: 0},{test: 222,type: 1},{test: 333,type: 0}];
+            // var pageSize = 140
+            function init(){
+                $("#QYMC").text(store.QYMC)
+                $("#CLXH").text(store.CLXH)
+                $("#CLCPMC").text(store.CLCPMC)
+                admin.req('/DataByRole/dataRoleDetail?clid='+store.clid+'&pzid='+store.pzid+'&sblb='+store.sblb, {}, function (res) {
+                    if (res.ok) {
+
+                    createTable(res.data)
+                    } else {
+                    layer.msg(res.message)
+                    }
+                    }, {
+                    method: 'post'
+                })
+                $("#cancel").click(function(){
+                    $("#tabContent").load('components/system/assetRevenueCheck/recommedNewCheck111.html', function () {
+                    });
+                })
+            }
+            init()
+            function createTable(data){
+                table.render({
+                    elem: '#declareTable',
+                    id: 'declareTable',
+                    data: data,
+                    // page: {
+                    //     layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'],
+                    //     groups: 10,
+                    //     limit: parseInt(pageSize),
+                    //     limits: [140],
+                    //     prev: '上一页',
+                    //     next: '下一页'
+                    // },
+                    // request: {
+                    //     pageName: 'pageNo', //页码的参数名称，默认：page
+                    //     limitName: 'pageSize' //每页数据量的参数名，默认：limit
+                    // },
+                    even: true,
+                    page: false,
+                    limit: data.length,
+                    cols:[[
+                        {
+                            title:"序号",
+                            type: 'numbers'
+                        },
+                        {
+                            title: '参数名称',
+                            field: 'dataName',
+                            templet: '<div><span title="{{# if(d.dataName!=undefined){ }}{{d.dataName}}{{# }}}">{{# if(d.dataName!=undefined){ }}{{d.dataName}}{{# }}}</span></div>'
+                        },
+                        {
+                            title: '推荐目录信息',
+                            field: 'qysb',
+                            templet: '<div><span title="{{# if(d.qysb!=undefined){ }}{{d.qysb}}{{# }}}">{{# if(d.qysb!=undefined){ }}{{d.qysb}}{{# }}}</span></div>'
+                        },
+                        {
+                            title: '公告参数信息',
+                            field: 'ggcs',
+                            templet: '<div><span title="{{# if(d.ggcs!=undefined){ }}{{d.ggcs}}{{# }}}">{{# if(d.ggcs!=undefined){ }}{{d.ggcs}}{{# }}}</span></div>'
+                        },
+                        {
+                            title: '审核结果',
+                            templet: function(d){
+                                if (d.result == "通过") {
+                                        return "<p><img src='../../../assets/images/表格/矩形(1).png' alt=''><span style='color: #16BBA2'>&nbsp;&nbsp;符合</span></p>"
+                                    } else {
+                                        return "<p><img src='../../../assets/images/表格/矩形复制 9.png' alt=''><span style='color: #FF7168'>&nbsp;&nbsp;不符合</span></p>"
+                                    }
+                            }
+                        },
+                        {
+                            title: '不符合原因',
+                            field: 'wtgyy',
+                            templet: '<div><span title="{{# if(d.wtgyy!=undefined){ }}{{d.wtgyy}}{{# }}}">{{# if(d.wtgyy!=undefined){ }}{{d.wtgyy}}{{# }}}</span></div>'
+                        },
+                        {
+                            title: '参数校验规则',
+                            field: 'role',
+                            templet: '<div><span title="{{# if(d.role!=undefined){ }}{{d.role}}{{# }}}">{{# if(d.role!=undefined){ }}{{d.role}}{{# }}}</span></div>'
+                            // templet: function () {
+                            //     return "<button class='zhushen'id='examine' lay-event='edit'>查看</button>"
+                            // }
+                        },
+                    ]]
+                })
+            }
+        })
+    </script>
+</html>

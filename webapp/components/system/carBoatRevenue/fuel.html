@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <style>
+        .Box1{
+            background:rgba(255,255,255,1);
+            border-radius:2px;
+            padding: 20px 28px 19px 24px;
+        }
+        .Box1 .title1{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(0,0,0,0.45);
+            line-height:22px;
+            display: inline-block;
+        }
+        .Box1 .label1{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            line-height:22px;
+            color:#4A90E2;
+        }
+        .Box1 .content1{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:#000000;
+            line-height:22px;
+            margin-right: 30px;
+        }
+        .tabs table{
+          width: 80%;
+          border:1px solid rgba(229,233,242,1);
+        }
+        .tabs table tr td{
+          height: 46px;
+        }
+        .tabs table tr th{
+          height: 46px;
+          background:rgba(250,250,250,1);width:20%;
+          font-weight:600;
+          color:rgba(48,49,51,1);
+          padding-right: 30px;
+          border:1px solid rgba(229,233,242,1);
+        }
+        .tabs table tr td{
+          padding-left: 20px;
+          border:1px solid rgba(229,233,242,1);
+        }
+        .title2{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color: #000000;
+            line-height:22px;
+            display: inline-block;
+            font-size: 14px;
+        }
+    </style>
+<body>
+  <div class="tabBox">
+    <div class="Box1" >
+      <div class="title1" id="cancel" >智慧审核校验 /</div> <div class="title2"> 燃料消耗量限值校验</div>
+      <div style="display: flex;align-items: center;margin-top: 10px;">
+          <div class="label1">企业名称：</div>
+          <div class="content1" id="QYMC">mggg</div>
+          <div class="label1">产品型号：</div>
+          <div class="content1" id="CLXH">型号</div>
+          <div class="label1">产品名称：</div>
+          <div class="content1" id="CLCPMC">明后才能</div>
+      </div>
+      <div style="margin-top: 14px;" class="tabs" >
+        <table >
+
+        </table>
+      </div>
+    </div>
+    
+  </div>
+</body>
+    <script>
+          layui.use(['table', 'form', 'element', 'admin'], function () {
+            var element = layui.element;
+            var table = layui.table;
+            var form = layui.form;
+            var admin = layui.admin;
+            $("#QYMC").text(store.QYMC)
+            $("#CLXH").text(store.CLXH)
+            $("#CLCPMC").text(store.CLCPMC)
+            var data = {}
+            $("#cancel").click(function(){
+                $("#tabContent").load('components/system/carBoatRevenue/recommedNewCheck111.html', function () {
+                });
+            })
+            admin.req('/limitValue/rlxhlDetail?clid='+store.clid+'&pzid='+store.pzid+'&sblb='+store.sblb,{},function(res){
+              if(res.ok){
+                data = res.data
+           
+            console.log(data)
+            if(data.firstType == null){
+              console.log(1)
+              data.firstType = '无'
+            }
+            if(data.secondType == null){
+              console.log(1)
+              data.secondType = '无'
+            }
+            if(data.trueValue == null){
+              console.log(1)
+              data.trueValue = '无'
+            }
+            if(data.limitValue == null){
+              console.log(1)
+              data.limitValue = '无'
+            }
+           
+            var audit = data.result;
+            var str = '';
+            if(audit == 'Y'){
+                str += "<img src='../../../assets/images/表格/矩形(1).png' alt=''><span style='color: #16BBA2'>&nbsp;&nbsp;符合</span>"
+            }else if(audit == null){
+                str = '无'
+            }else if(audit == 'N'){
+                str += "<img src='../../../assets/images/表格/矩形复制 9.png' alt=''><span style='color: #FF7168'>&nbsp;&nbsp;不符合</span>"
+            }else if(audit == 'Z'){
+              str += "<span style='color: #FF7168'>&nbsp;&nbsp;该车型不在限制校验范围内</span>"
+            }else if(audit == 'E'){
+              str +="<span style='color: #FF7168'>&nbsp;&nbsp;该车型缺少燃料消耗量或其他必要参数,无法校验</span>"
+            }
+            if(data.role == null){
+              data.role = '无'
+            }
+            var tr = '<tr><<th align="right">车辆分类</th><td>'+data.firstType+'</td><tr><th align="right">车辆细分类</th><td>'+data.secondType+'</td></tr><tr><th align="right">推荐目录申报值</th><td>'+data.trueValue+'</td></tr><tr><th align="right">标准限值</th><td>'+data.limitValue+'</td></tr><tr><th align="right">审核结果</th><td>'+str+'</td></tr><tr><th align="right"><span>限制校验规则</span></th><td>'+data.role+'</td></tr></tr>'
+            $(".tabs table").html(tr)
+          }else {
+                layer.msg(res.message)
+              }
+            },{
+              method: 'post'
+            })
+          })
+    </script>
+</html>

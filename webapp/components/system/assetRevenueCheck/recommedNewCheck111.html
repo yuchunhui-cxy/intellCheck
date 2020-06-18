@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .Box1{
+            background:rgba(255,255,255,1);
+            border-radius:2px;
+            padding: 20px 28px 19px 24px;
+        }
+        .Box1 .title1{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(0,0,0,0.45);
+            line-height:22px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #cancel_one{
+            width:80px;
+            height:34px;
+            background:rgba(64,158,255,1);
+            border-radius:4px;
+            cursor: pointer;
+            line-height: 34px;
+            text-align: center;
+            ont-size:14px;
+            font-family:PingFang-SC-Medium,PingFang-SC;
+            font-weight:500;
+            color:rgba(255,255,255,1);
+        }
+        .Box1 .label1{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            line-height:22px;
+            color:#4A90E2;
+        }
+        .Box1 .content1{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:#000000;
+            line-height:22px;
+            margin-right: 30px;
+        }
+        .item1{
+            width:150px;
+            height:40px;
+            background:#fff;
+            border-radius:4px 4px 0px 0px;
+            border:1px solid rgba(229,233,242,1);
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(0,0,0,0.6);
+            line-height:40px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .active{
+            background: #E5E9F2;
+            color: #1890FF;
+        }
+        .detail{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(24,144,255,1);
+            line-height: 24px;
+            width:62px;height:24px;background:rgba(237,247,255,1);border-radius:1px;border:1px solid rgba(190,227,255,1);text-align: center;
+            cursor: pointer;
+        }
+        .layui-table-view {
+            margin: 0;
+        }
+        .bottomBox{
+            height:287px;
+            background:rgba(255,255,255,1);
+            border-radius:2px;
+            margin-top: 10px;
+            display: flex;
+        }
+        .left{
+            width: 39%;
+            margin-left: 24px;
+        }
+
+        .leftBox{
+            height:200px;
+            background:rgba(255,255,255,1);
+            border-radius:4px;
+            border:1px solid rgba(229,233,242,1);
+            padding: 0 18px 0 22px;
+        }
+        .hang{
+            height: 33.3%;
+            padding-top: 9px;
+            box-sizing: border-box;
+        }
+        .hangLeft{
+           width:70px;
+            text-align: right;
+            font-size:14px;
+            font-family:PingFangSC-Semibold,PingFang SC;
+            font-weight:600;
+            color:rgba(48,49,51,1);
+            line-height:20px;
+        }
+        .hangRight{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(87,87,87,1);
+            line-height:20px;
+            width: calc(100% - 70px);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .flex{
+            display: flex;
+        }
+        .leftTitle{
+            font-size:14px;
+            font-family:PingFangSC-Medium,PingFang SC;
+            font-weight:600;
+            color:rgba(0,0,0,0.85);
+            line-height:22px;
+            margin-top: 14px;
+            margin-bottom: 10px;
+        }
+        .right{
+            width: 54%;
+            margin-left: 20px;
+        }
+        .rightTitle{
+            font-size:14px;
+            font-family:PingFangSC-Medium,PingFang SC;
+            font-weight:600;
+            color:rgba(0,0,0,0.85);
+            line-height:22px;
+            margin-top: 14px;
+            margin-bottom: 10px;
+        }
+        .rightBox{
+            height:200px;
+            background:rgba(255,255,255,1);
+            border-radius:4px;
+            border:1px solid rgba(229,233,242,1);
+            padding: 0 18px 0 22px;
+        }
+        .layui-form-item{
+            margin: 0;
+        }
+        .tableDetail{
+            width:62px;
+            height:100%;
+            background:rgba(237,247,255,1);
+            border-radius:1px;
+            border:1px solid rgba(190,227,255,1);
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(24,144,255,1);
+            cursor: pointer;
+        }
+        
+    </style>
+    <style>
+        .tabBox {
+            /* width: 90%; */
+            height: auto;
+            background-color: #ffffff;
+        }
+        .layui-tab-title{
+            position: relative;
+            left: 0;
+            height: 60px;
+            white-space: nowrap;
+            font-size: 0;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            transition: all .2s;
+            -webkit-transition: all .2s;
+            line-height: 60px;
+        }
+        .layui-tab-title .layui-this:after{
+
+            height: 50px;
+            border: 2px solid rgba(74,144,226,1);
+        }
+        .layui-tab-brief>.layui-tab-title .layui-this:after{
+            border-bottom: 2px solid rgba(74,144,226,1);
+        }
+        .top_body{
+            margin-left: 5px;
+        }
+        .top_body p{
+            margin-right: 15px;
+            margin-bottom: 10px;
+        }
+        .zhushen{
+            width:50px;
+            height:24px;
+            background:rgba(244,251,255,1);
+            border-radius:2px;
+            border:1px solid rgba(172,220,255,1);
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(74,144,226,1);
+            line-height:20px;
+            cursor: pointer;
+        }
+        .kong{
+            width: 100%;
+            height: 10px;
+            background: rgba(240,242,245,1);
+        }
+        .y{
+            color: #6FC246;
+        }
+        .n{
+            color: #FF7168;
+        }
+        .z{
+            color: #E6A23B;
+        }
+    </style>
+</head>
+<body>
+<div class="tabBox" >
+
+            <div style="background: #F0F2F5;" class="layui-tab-content" style="height: auto;">
+                <div id="mainContent" class="layui-tab-item layui-show">
+                    <div class="Box1">
+                        <div class="title1" >
+                            <div>智慧审核校验</div>
+                            <div id="cancel_one">返回</div>
+                        </div>
+                        <div style="display: flex;align-items: center;margin-top: 10px;">
+                            <div class="label1">企业名称：</div>
+                            <div class="content1" id="QYMC">mggg</div>
+                            <div class="label1">产品型号：</div>
+                            <div class="content1" id="CLXH">型号</div>
+                            <div class="label1">产品名称：</div>
+                            <div class="content1" id="CLCPMC">明后才能</div>
+                        </div>
+                        <div id="tab1" style="margin-top: 14px;display: flex;">
+                            <!--            <div class="item1 active">TAB1-NC518387</div>-->
+                            <!--            <div class="item1">TAB1-NC518387</div>-->
+                            <!--            <div class="item1">TAB1-NC518387</div>-->
+                        </div>
+                        <div id="tableBox" >
+                            <table class="layui-hide" lay-filter="table" id="table"></table>
+                        </div>
+
+
+                    </div>
+
+                    <div class="bottomBox">
+                        <div class="left">
+                            <div class="leftTitle">审核结果</div>
+                            <div class="leftBox">
+                                <div class="hang" style="border-bottom: 1px solid #E5E9F2;">
+                                    <div class="flex">
+                                        <div class="hangLeft">主审结果：</div>
+                                        <div class="hangRight" id="zjrResult"></div>
+                                    </div>
+                                    <div class="flex">
+                                        <div class="hangLeft">意见：</div>
+                                        <div class="hangRight" id="zjrReason"></div>
+                                    </div>
+
+                                </div>
+                                <div class="hang" style="border-bottom: 1px solid #E5E9F2;">
+                                    <div class="flex">
+                                        <div class="hangLeft">复审结果：</div>
+                                        <div class="hangRight" id="shrResult"></div>
+                                    </div>
+                                    <div class="flex">
+                                        <div class="hangLeft">意见：</div>
+                                        <div class="hangRight" id="shrReason"></div>
+                                    </div>
+                                </div>
+                                <div class="hang">
+                                    <div class="flex">
+                                        <div class="hangLeft">批准结果：</div>
+                                        <div class="hangRight" id="pzrResult"></div>
+                                    </div>
+                                    <div class="flex">
+                                        <div class="hangLeft">意见：</div>
+                                        <div class="hangRight" id="pzrReason"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="rightTitle">审批意见</div>
+                            <div class="rightBox">
+                                <form class="layui-form">
+                                    <div class="layui-form-item" style="margin-top: 9px;">
+                                        <input type="radio" name="result" value="Y" title="通过" checked="">
+                                        <input type="radio" name="result" value="N" title="不通过">
+                                    </div>
+                                    <div class="layui-form-item" style="margin-top: 7px;">
+                                        <textarea lay-verify="detail" name="reason" style="background: rgba(250,250,250,1);" placeholder="请输入审批意见" class="layui-textarea"></textarea>
+                                    </div>
+                                    <div class="layui-form-item" style="text-align: center;margin-top: 10px;">
+                                        <button id="ok" class="layui-btn layui-btn-normal" lay-filter="ok" lay-submit>确定</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-tab-item ">
+                    1
+                </div>
+                <div class="layui-tab-item ">
+                    2
+                </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+    <script>
+
+        layui.use(['table','form','element'], function () {
+            store.pzid = ""
+            $("#cancel_one").click(function(){
+                $("#main").load('components/system/assetRevenueCheck/recommedNewCheck.html', function () {
+                });
+            })
+            var element = layui.element;
+            var table = layui.table;
+            var form = layui.form;
+            form.render();
+            var admin = layui.admin;
+            var config = layui.config
+
+            var load = layer.load(1)
+
+            $("#QYMC").text(store.QYMC)
+            $("#CLXH").text(store.CLXH)
+            $("#CLCPMC").text(store.CLCPMC)
+
+            admin.req('/validate/detail',store,function(res){
+                layer.close(load)
+                if(res.respCode!=0){
+                    layer.alert(res.message, {
+                    })
+                    return
+                }
+                let data = res.data
+                data.detailForPZ[0].project = "检验项目齐全性校验"
+                data.detailForPZ[0].projectIllustrate = "校验新能源财税申报所涉及的检验报告的齐全性及与《公共》报告的一致性"
+                data.detailForPZ[1].project = "申报数据合规性校验"
+                data.detailForPZ[1].projectIllustrate = "企业申报数据的合规性校验"
+                data.detailForPZ[2].project = "燃料消耗量限值校验"
+                data.detailForPZ[2].projectIllustrate = "根据现行的常规燃料消耗量国家标准建立限值数据校验"
+                data.detailForPZ[3].project = "车辆类型与参数校验"
+                data.detailForPZ[3].projectIllustrate = "车辆类型与采集参数对照校验"
+
+
+                $("#zjrReason").text(data.zjrReason)
+                $("#shrReason").text(data.shrReason)
+                $("#pzrReason").text(data.pzrReason)
+                if(data.zjrResult == "Z"){
+                    $("#zjrResult").text("未审核")
+                    $("#zjrResult").addClass("z")
+                }else if(data.zjrResult == "Y"){
+                    $("#zjrResult").text("通过")
+                    $("#zjrResult").addClass("y")
+                }else if(data.zjrResult == "N"){
+                    $("#zjrResult").text("不通过")
+                    $("#zjrResult").addClass("n")
+                }
+                if(data.shrResult == "Z"){
+                    $("#shrResult").text("未审核")
+                    $("#shrResult").addClass("z")
+                }else if(data.shrResult == "Y"){
+                    $("#shrResult").text("通过")
+                    $("#shrResult").addClass("y")
+                }else if(data.zjrResult == "N"){
+                    $("#shrResult").text("不通过")
+                    $("#shrResult").addClass("n")
+                }
+                if(data.pzrResult == "Z"){
+                    $("#pzrResult").text("未审核")
+                    $("#pzrResult").addClass("z")
+                }else if(data.pzrResult == "Y"){
+                    $("#pzrResult").text("通过")
+                    $("#pzrResult").addClass("y")
+                }else if(data.pzrResult == "N"){
+                    $("#pzrResult").text("不通过")
+                    $("#pzrResult").addClass("n")
+                }
+                renderTable(data.detailForPZ)
+
+                data.pzList.forEach(function(item,index){
+                    if(index==0){
+                        $("#tab1").append(
+                            '<div child="'+item+'" class="item1 active">'+item+'</div>'
+                        )
+                    }else{
+                        $("#tab1").append(
+                            '<div child="'+item+'" class="item1">'+item+'</div>'
+                        )
+                    }
+
+                })
+                $("#tab1").find("div").each(function(){
+                    $(this).click(function(){
+                        load = layer.close(load)
+
+                        if($(this).hasClass("active")){
+                            return
+                        }
+                        $("#tab1").find("div").each(function(){
+                            $(this).removeClass("active")
+                        })
+                        $("#tab1").find("div").each(function(){
+                            $(this).removeClass("active")
+                        })
+                        $(this).addClass("active")
+
+                        store.pzid = $(this).text()
+                        admin.req('/validate/detail',store,function(res){
+                            layer.close(load)
+                            let data = res.data
+                            data.detailForPZ[0].project = "检验项目齐全性校验"
+                            data.detailForPZ[0].projectIllustrate = "校验新能源财税申报所涉及的检验报告的齐全性及与《公共》报告的一致性"
+                            data.detailForPZ[1].project = "申报数据合规性校验"
+                            data.detailForPZ[1].projectIllustrate = "企业申报数据的合规性校验"
+                            data.detailForPZ[2].project = "燃料消耗量限值校验"
+                            data.detailForPZ[2].projectIllustrate = "根据现行的常规燃料消耗量国家标准建立限值数据校验"
+                            data.detailForPZ[3].project = "车辆类型与参数校验"
+                            data.detailForPZ[3].projectIllustrate = "车辆类型与采集参数对照校验"
+
+
+                            $("#zjrReason").text(data.zjrReason)
+                            $("#shrReason").text(data.shrReason)
+                            $("#pzrReason").text(data.pzrReason)
+                            if(data.zjrResult == "Z"){
+                                $("#zjrResult").text("未审核")
+                            }else if(data.zjrResult == "Y"){
+                                $("#zjrResult").text("通过")
+                            }else if(data.zjrResult == "N"){
+                                $("#zjrResult").text("不通过")
+                            }
+                            if(data.shrResult == "Z"){
+                                $("#shrResult").text("未审核")
+                            }else if(data.shrResult == "Y"){
+                                $("#shrResult").text("通过")
+                            }else if(data.zjrResult == "N"){
+                                $("#shrResult").text("不通过")
+                            }
+                            if(data.pzrResult == "Z"){
+                                $("#pzrResult").text("未审核")
+                            }else if(data.pzrResult == "Y"){
+                                $("#pzrResult").text("通过")
+                            }else if(data.pzrResult == "N"){
+                                $("#pzrResult").text("不通过")
+                            }
+                            renderTable(data.detailForPZ)
+                        },{
+                            method: 'post'
+                        })
+
+
+                    })
+                })
+
+            },{
+                method: 'post'
+            })
+
+
+            // form.verify({
+            //     detail: function(value){
+            //         if(value.length < 5){
+            //             return '标题至少得5个字符啊';
+            //         }
+            //     }
+            // });
+            // 表单提交，查询与重置
+            form.on('submit(ok)', function(data) {
+                var d = data.field;
+                store.result = d.result
+                store.reason = d.reason
+
+                admin.req('/validate/insertResult',store,function(res){
+                    layer.msg('审批成功！', {
+                        icon: 1
+                    });
+                    if(store.shzt == 1){
+                        if(d.result == "Y"){
+                            $("#zjrResult").text("通过")
+                            document.getElementById("zjrResult").style.color = "#6FC246"
+
+                        }else{
+                            $("#zjrResult").text("不通过")
+                            document.getElementById("zjrResult").style.color = "#FF7168"
+
+
+                        }
+                        $("#zjrReason").text(d.reason)
+                    }
+                    else if(store.shzt == 2){
+                        if(d.result == "Y"){
+                            $("#shrResult").text("通过")
+                            document.getElementById("shrResult").style.color = "#6FC246"
+
+
+                        }else{
+                            $("#shrResult").text("不通过")
+                            document.getElementById("shrResult").style.color = "#FF7168"
+
+                        }
+                        $("#shrReason").text(d.reason)
+
+
+                    }
+                    else if(store.shzt == 3){
+                        if(d.result == "Y"){
+                            $("#pzrResult").text("通过")
+                            document.getElementById("pzrResult").style.color = "#6FC246"
+
+                        }else{
+                            $("#pzrResult").text("不通过")
+                            document.getElementById("pzrResult").style.color = "#FF7168"
+
+                        }
+                        $("#pzrReason").text(d.reason)
+
+
+                    }
+
+                },{
+                    method: 'get'
+                })
+
+                return false
+            });
+
+            // 渲染表格
+            function renderTable(list){
+                table.render({
+                    elem: '#table',
+                    id: "table",
+                    // url: admin.formatUrl('/api/activiti/repository/processes'),
+                    // 格式化后台返回的数据
+                    parseData: function(res) { //res 即为原始返回的数据
+                        // 返回结果，进行渲染表格
+                        return {
+                            "code": res.respCode, //解析接口状态
+                            "msg": res.message, //解析提示文本
+                            "count": res.data.count, //解析数据长度
+                            "data": res.data.list //解析数据列表
+                        };
+                    },
+                    data:list,
+                    // height: config.pageHeight(),
+                    // limit: config.pageLimit(),
+                    // limits: config.pageLimits(),
+                    cols: [
+                        [
+                            {
+                                field: 'pzid',
+                                title: '配置ID',
+                                minWidth: 180,
+                            },
+                            {
+                                title: '序号',
+                            type: 'numbers'
+                        },
+                            {
+                                field: 'project',
+                                title: '项目',
+                                minWidth: 180,
+                            },
+
+                            {
+                            field: 'jyjg',
+                            title: '结论',
+                            width: 150,
+                            templet: function(x){
+                                // x.jyjg = "E"
+                                if(x.jyjg=="Y"){
+                                    return '<div style="display: flex;align-items: center;">'+
+                                          '<div style="width:6px;height:6px;background:rgba(74,144,226,1);margin-right: 17px;border-radius: 50%;"></div>'+
+                                        '<div style="color: #4A90E2;">通过</div>'+
+                                        '</div>'
+                                }else if(x.jyjg=="N"){
+                                    return '<div style="display: flex;align-items: center;">'+
+                                        '<div style="width:6px;height:6px;background:#FF7168;margin-right: 17px;border-radius: 50%;"></div>'+
+                                        '<div style="color: #FF7168;">不通过</div>'+
+                                        '</div>'
+                                }else if(x.jyjg==""){
+                                    return '<div style="display: flex;align-items: center;">'+
+                                        '<div style="width:6px;height:6px;background:#E6A23B;margin-right: 17px;border-radius: 50%;"></div>'+
+                                        '<div style="color: #E6A23B;">未审核</div>'+
+                                        '</div>'
+                                }else if(x.jyjg=="E"){
+                                    return '<div style="display: flex;align-items: center;">'+
+                                        '<div style="width:6px;height:6px;background:#FF7168;margin-right: 17px;border-radius: 50%;"></div>'+
+                                        '<div style="color: #FF7168;">无法校验</div>'+
+                                        '</div>'
+                                }
+                            },
+                        },
+
+                            {
+                            align: 'center',
+                            title: '操作',
+                            width: 180,
+                            templet: function(x){
+                                if(x.LAY_INDEX == 1){
+                                    return "<div lay-event='one' style='color: rgba(24,144,255,1)' class='tableDetail'>详情</div>"
+                                }
+                                else if(x.LAY_INDEX == 2){
+                                    return "<div lay-event='two' style='color: rgba(24,144,255,1)' class='tableDetail'>详情</div>"
+                                }
+                                else if(x.LAY_INDEX == 3){
+                                    return "<div lay-event='three' style='color: rgba(24,144,255,1)' class='tableDetail'>详情</div>"
+                                }
+                                else if(x.LAY_INDEX == 4){
+                                    return "<div lay-event='four' style='color: rgba(24,144,255,1)' class='tableDetail'>详情</div>"
+                                }
+                            },
+                        },
+                            {
+                                field: 'projectIllustrate',
+                                title: '项目说明',
+                                minWidth: 500,
+                            },
+
+                        ]
+                    ],
+                    // cellMinWidth: 90,
+                    page:false,
+                    even:true,
+                    request: {
+                        pageName: 'pageNo',
+                        limitName: 'pageSize'
+                    },
+                    where: {
+                        name:name
+                    },
+                });
+
+            }
+
+
+
+
+
+
+            table.on('tool(table)', function(obj) {
+                // 获取点击列的数据
+                var data = obj.data;
+                var layEvent = obj.event;
+
+                store.pzid = data.pzid
+
+
+                // 判断操作类型
+                if (layEvent === 'one') { // 查看用户
+                    $("#tabContent").load('components/system/assetRevenueCheck/recommedNewCheck1.html', function () {
+                    });
+                }
+                else if (layEvent === 'three') { // 查看用户
+                    $("#tabContent").load('components/system/assetRevenueCheck/fuel.html', function () {
+                    });
+                }
+                else if (layEvent === 'two') { // 查看用户
+                    $("#tabContent").load('components/system/assetRevenueCheck/declare.html', function () {
+                    });
+                }
+
+
+            });
+
+        })
+
+
+    </script>
+</body>
+</html>

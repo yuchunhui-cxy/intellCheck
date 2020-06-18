@@ -1,0 +1,282 @@
+/* 弹窗样式-审核人 */
+
+
+/*.scrollType {*/
+
+
+/*height: 265px;*/
+
+
+/*overflow: auto;*/
+
+
+/*}*/
+
+
+/*.scrollRY {*/
+
+
+/*height: 320px;*/
+
+
+/*overflow: auto;*/
+
+
+/*}*/
+
+
+/*.layui-form-label{ width: 40px;}*/
+
+.yfpry {
+    height: 341px;
+    margin-left: -1px;
+    border: 1px solid #ccc;
+    background: rgba(250, 250, 250, 1);
+    border: 1px solid rgba(235, 238, 245, 1);
+    overflow-y: auto;
+}
+
+
+/*滚动条样式-审核架构*/
+
+.yfpry::-webkit-scrollbar {
+    width: 6px;
+}
+
+
+/*定义滑块颜色、内阴影及圆角*/
+
+.yfpry::-webkit-scrollbar-thumb,
+.layui-table-body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+
+/*定义滚动条的轨道颜色、内阴影及圆角*/
+
+.yfpry::-webkit-scrollbar-track,
+.layui-table-body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.yfpry ul {
+    /*background-color: #eeeeff;*/
+}
+
+.yfpry ul li {
+    height: 35px;
+    line-height: 40px;
+    background: rgba(255, 255, 255, 1);
+    border-bottom: 1px solid rgba(235, 238, 245, 1);
+    padding: 5px;
+    padding-left: 13px;
+}
+
+.yfpry ul li:hover {
+    background: #EBF6FF;
+    color: #36A8FF;
+}
+
+.paramCard {
+    height: 284px;
+    margin: 0 10px 0px 10px;
+    padding: 10px;
+    background: #FAFAFA;
+    border: 1px solid rgba(235, 238, 245, 1);
+    overflow-y: auto;
+}
+
+
+/*滚动条样式-零件树-参数树*/
+
+.paramCard::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+
+/*定义滑块颜色、内阴影及圆角*/
+
+.paramCard::-webkit-scrollbar-thumb,
+.layui-table-body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+
+/*定义滚动条的轨道颜色、内阴影及圆角*/
+
+.paramCard::-webkit-scrollbar-track,
+.layui-table-body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+#lingjianTree {
+    overflow-y: auto;
+    height: 287px;
+    background: #FAFAFA;
+    margin: 0 10px 0px 10px;
+    padding: 10px;
+    width: 97.5%
+}
+
+#lingjianTree::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+
+/*定义滑块颜色、内阴影及圆角*/
+
+#lingjianTree::-webkit-scrollbar-thumb,
+.layui-table-body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+
+/*定义滚动条的轨道颜色、内阴影及圆角*/
+
+#lingjianTree::-webkit-scrollbar-track,
+.layui-table-body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+#lingjianCanTree {
+    overflow-y: auto;
+    height: 287px;
+    background: #FAFAFA;
+    margin: 0;
+    padding: 10px;
+    width: 46.5%;
+    display: none;
+}
+
+#lingjianCanTree::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+
+/*定义滑块颜色、内阴影及圆角*/
+
+#lingjianCanTree::-webkit-scrollbar-thumb,
+.layui-table-body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+
+/*定义滚动条的轨道颜色、内阴影及圆角*/
+
+#lingjianCanTree::-webkit-scrollbar-track,
+.layui-table-body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.layui-form-labels {
+    padding-left: 0;
+    margin-top: 2px;
+    margin-left: -20px;
+}
+
+.layui-form-labels2 {
+    margin-top: 2px;
+    margin-left: -57px;
+}
+
+.layui-form-labels3 {
+    margin-top: 2px;
+    margin-left: -53px;
+}
+
+.layui-btn-normals {
+    color: #36A8FF;
+    background: #ecf5ff;
+    border: 1px solid rgba(54, 168, 255, 1);
+    border-radius: 4px;
+}
+
+
+/* .layui-btn:hover {
+        background: #36A8FF
+    } */
+
+.item-titles {
+    border: 1px solid rgba(235, 238, 245, 1);
+    height: 383px;
+    margin-bottom: 0;
+}
+
+.layui-form-radioed>div,
+.layui-form-radio>i:hover {
+    color: #229FFF;
+}
+
+.yfpry .unassigned-personnel {
+    width: 80px;
+    height: 22px;
+    font-size: 16px;
+    font-family: PingFang-SC-Medium, PingFang-SC;
+    font-weight: 500;
+    color: rgba(192, 196, 204, 1);
+    line-height: 22px;
+    margin: 150px auto;
+    display: none;
+}
+
+.paramCard .audit-content {
+    position: absolute;
+    left: 39%;
+}
+
+.layui-input,
+.layui-select {
+    height: 36px;
+    line-height: 28px;
+}
+
+#treeDemolj li span.button.switch {
+    width: 0px;
+    height: 0px;
+}
+
+.reviewed-title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.actives {
+    background: #EBF6FF !important;
+    color: #36A8FF !important;
+}
+
+#yfpry li i {
+    cursor: pointer;
+}
+
+#tj:hover {
+    background: #36A8FF
+}
+
+.part-parametersTree {
+    position: relative;
+    height: 265px;
+    background: #FAFAFA;
+    margin: 0 10px 0px 10px;
+    padding: 10px;
+    width: 94.5%;
+}

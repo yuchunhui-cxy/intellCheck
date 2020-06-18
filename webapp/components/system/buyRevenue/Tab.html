@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .Box1{
+            background:rgba(255,255,255,1);
+            border-radius:2px;
+            padding: 5px 28px 19px 24px;
+        }
+        .Box1 .title1{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(0,0,0,0.45);
+            line-height:22px;
+        }
+        .Box1 .label1{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            line-height:22px;
+            color:#4A90E2;
+        }
+        .Box1 .content1{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:#000000;
+            line-height:22px;
+            margin-right: 30px;
+        }
+        .item1{
+            width:150px;
+            height:40px;
+            background:#fff;
+            border-radius:4px 4px 0px 0px;
+            border:1px solid rgba(229,233,242,1);
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(0,0,0,0.6);
+            line-height:40px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .active{
+            background: #E5E9F2;
+            color: #1890FF;
+        }
+        .detail{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(24,144,255,1);
+            line-height: 24px;
+            width:62px;height:24px;background:rgba(237,247,255,1);border-radius:1px;border:1px solid rgba(190,227,255,1);text-align: center;
+            cursor: pointer;
+        }
+        .layui-table-view {
+            margin: 0;
+        }
+        .bottomBox{
+            height:287px;
+            background:rgba(255,255,255,1);
+            border-radius:2px;
+            margin-top: 10px;
+            display: flex;
+        }
+        .left{
+            width: 39%;
+            margin-left: 24px;
+        }
+
+        .leftBox{
+            height:200px;
+            background:rgba(255,255,255,1);
+            border-radius:4px;
+            border:1px solid rgba(229,233,242,1);
+            padding: 0 18px 0 22px;
+        }
+        .hang{
+            height: 33.3%;
+            padding-top: 9px;
+            box-sizing: border-box;
+        }
+        .hangLeft{
+            width:70px;
+            text-align: right;
+            font-size:14px;
+            font-family:PingFangSC-Semibold,PingFang SC;
+            font-weight:600;
+            color:rgba(48,49,51,1);
+            line-height:20px;
+        }
+        .hangRight{
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(87,87,87,1);
+            line-height:20px;
+            width: calc(100% - 70px);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .flex{
+            display: flex;
+        }
+        .leftTitle{
+            font-size:14px;
+            font-family:PingFangSC-Medium,PingFang SC;
+            font-weight:500;
+            color:rgba(0,0,0,0.85);
+            line-height:22px;
+            margin-top: 14px;
+            margin-bottom: 10px;
+        }
+        .right{
+            width: 54%;
+            margin-left: 20px;
+        }
+        .rightTitle{
+            font-size:14px;
+            font-family:PingFangSC-Medium,PingFang SC;
+            font-weight:500;
+            color:rgba(0,0,0,0.85);
+            line-height:22px;
+            margin-top: 14px;
+            margin-bottom: 10px;
+        }
+        .rightBox{
+            height:200px;
+            background:rgba(255,255,255,1);
+            border-radius:4px;
+            border:1px solid rgba(229,233,242,1);
+            padding: 0 18px 0 22px;
+        }
+        .layui-form-item{
+            margin: 0;
+        }
+        .tableDetail{
+            width:62px;
+            height:100%;
+            background:rgba(237,247,255,1);
+            border-radius:1px;
+            border:1px solid rgba(190,227,255,1);
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(24,144,255,1);
+            cursor: pointer;
+        }
+
+    </style>
+    <style>
+        .tabBox {
+            /* width: 90%; */
+            height: auto;
+            background-color: #ffffff;
+        }
+        .layui-tab-title{
+            position: relative;
+            left: 0;
+            height: 60px;
+            white-space: nowrap;
+            font-size: 0;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            transition: all .2s;
+            -webkit-transition: all .2s;
+            line-height: 60px;
+        }
+        .layui-tab-title .layui-this:after{
+
+            height: 50px;
+            border: 2px solid rgba(74,144,226,1);
+        }
+        .layui-tab-brief>.layui-tab-title .layui-this:after{
+            border-bottom: 2px solid rgba(74,144,226,1);
+        }
+        .top_body{
+            margin-left: 5px;
+        }
+        .top_body p{
+            margin-right: 15px;
+            margin-bottom: 10px;
+        }
+        .zhushen{
+            width:50px;
+            height:24px;
+            background:rgba(244,251,255,1);
+            border-radius:2px;
+            border:1px solid rgba(172,220,255,1);
+            font-size:14px;
+            font-family:PingFangSC-Regular,PingFang SC;
+            font-weight:400;
+            color:rgba(74,144,226,1);
+            line-height:20px;
+            cursor: pointer;
+        }
+        .kong{
+            width: 100%;
+            height: 10px;
+            background: rgba(240,242,245,1);
+        }
+        .y{
+            color: #6FC246;
+        }
+        .n{
+            color: #FF7168;
+        }
+        .z{
+            color: #E6A23B;
+        }
+        .layui-tab-content{
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="tabBox" >
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" >
+        <ul class="layui-tab-title"  style="background-color: rgba(238,248,255,1); " >
+            <li class="layui-this" style="width:11%;color:rgba(87,87,87,1);" ><img src="../../../assets/images/02产品审查_新产品审查_slices/形状结合(3).png" width="25px" height="25px" style="margin-bottom: 2px;" width="15px" height="15px" alt="">&nbsp;&nbsp;智慧审批校验</li>
+            <li style="width:11%;color:rgba(87,87,87,1);" ><img src="../../../assets/images/02产品审查_新产品审查_slices/2.png" width="25px" height="25px" style="margin-bottom: 2px;" style="margin-bottom: 2px;" alt="">&nbsp;&nbsp;企业申请书</li>
+            <li style="width:11%;color:rgba(87,87,87,1);" ><img src="../../../assets/images/02产品审查_新产品审查_slices/3.png" width="25px" height="25px" style="margin-bottom: 2px;" alt="">&nbsp;&nbsp;推荐车型参数</li>
+            <li style="width:11%;color:rgba(87,87,87,1);" ><img src="../../../assets/images/02产品审查_新产品审查_slices/形状结合(4).png" width="25px" height="25px" style="margin-bottom: 2px;" height="15px" alt="">&nbsp;&nbsp;技术指标信息表</li>
+            <li style="width:11%;color:rgba(87,87,87,1);" ><img src="../../../assets/images/02产品审查_新产品审查_slices/形状结合(5).png" width="25px" height="25px" style="margin-bottom: 2px;" height="15px" alt="">&nbsp;&nbsp;公告参数</li>
+            <li style="width:11%;color:rgba(87,87,87,1);" ><img src="../../../assets/images/02产品审查_新产品审查_slices/形状结合.png" width="25px" height="25px" style="margin-bottom: 2px;" height="15px" alt="">&nbsp;&nbsp;备案参数</li>
+            <li  style="width:11%;color:rgba(87,87,87,1);"><img src="../../../assets/images/02产品审查_新产品审查_slices/形状结合(2).png" width="25px" height="25px" style="margin-bottom: 2px;" height="15px" alt="">&nbsp;&nbsp;当批检测报告</li>
+        </ul>
+        <div class="kong"></div>
+
+        <div style="background: #F0F2F5;" class="layui-tab-content" style="height: auto;">
+            <div id="tabContent" class="layui-tab-item layui-show">
+
+            </div>
+
+            <div class="layui-tab-item ">
+                1
+            </div>
+            <div class="layui-tab-item ">
+                2
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+
+    layui.use(['table','form','element'], function () {
+        var element = layui.element;
+        $("#tabContent").load('components/system/buyRevenue/recommedNewCheck111.html', function () {
+        });
+    })
+
+
+</script>
+</body>
+</html>

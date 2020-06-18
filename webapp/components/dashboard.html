@@ -1,0 +1,343 @@
+<link rel="stylesheet" href="assets/css/dashboard.css">
+<!--<link rel="stylesheet" href="../assets/css/pending_tasks.css">-->
+
+<div class="layui-row layui-col-space10">
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">任务总览
+                <div class="layui-card-header-right-btn tasks-info-refresh">
+                     <a href="javascript:taskInfoInit"><i class="layui-icon layui-icon-refresh-1"></i>&nbsp;刷新</a>
+                </div>
+            </div>
+            <div class="layui-card-body" >
+                <div class="layui-row tasks-info-container">
+                    <div class="layui-col-xs6 layui-col-md3">
+                        <a href="#!ADC_management_handleTask_html">
+                            <div class="tasks-info">
+                                <img src="../assets/images/icon/dashboard-icon-upcoming.png" alt="待处理任务">
+                                <strong style="color: #55B7FF;">-</strong>
+                                <span style='margin-top: 10px'>待处理任务</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="layui-col-xs6 layui-col-md3">
+                        <a href="#!ADC_management_handleTask_html?taskState=1">
+                            <!--获取url参数值-->
+                            <div class="tasks-info">
+                                <img src="../assets/images/icon/dashboard-icon-done.png" alt="已完成任务">
+                                <strong style="color: #7ED321;">-</strong>
+                                <span style='margin-top: 10px'>审核中任务</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="layui-col-xs6 layui-col-md3">
+                        <a href="#!ADC_management_handleTask_html?taskState=2">
+                            <div class="tasks-info">
+                                <img src="../assets/images/icon/dashboard-icon-timeout.png" alt="已驳回任务">
+                                <strong style="color: #FFBF00;">-</strong>
+                                <span style='margin-top: 10px'>已驳回任务</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="layui-col-xs6 layui-col-md3">
+                        <a href="#!ADC_management_handleTask_html?taskState=3">
+                            <div class="tasks-info">
+                                <img src="../assets/images/icon/dashboard-icon-commission.png" alt="已完成任务">
+                                <strong style="color: #9013FE;">-</strong>
+                                <span style='margin-top: 10px'>已完成任务</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">站内信
+                <div class="layui-card-header-right-btn">
+                    <a href="javascript:" style="color:#949494">
+                        更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
+                </div>
+            </div>
+            <div class="layui-card-body tasks-track-container">
+                <!-- <div class="tasks-track">
+                    <p>单据审批处理</p>
+                    <a href="javascript:;">协同</a>
+                    <span>蔡建军</span>
+                    <span>2018/09/03</span>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layui-row layui-col-space10">
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">系统通知
+                <div class="layui-card-header-right-btn">
+                    <a href="#!ADC_systemNotification_systemMessagesUnauthorized_html">更多&nbsp;<i
+                            class="layui-icon layui-icon-right"></i></a>
+                </div>
+            </div>
+            <div class="layui-card-body tableTodolist">
+                <table id="tableTodolist" lay-filter="tableTodolist"></table>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">政策信息
+                <div class="layui-card-header-right-btn">
+                    <a href="#!ADC_tradeInformation_policyInformation_html">
+                        更多&nbsp;<i class="layui-icon layui-icon-right"></i></a>
+                </div>
+            </div>
+            <div class="layui-card-body policyInformation">
+                <div id="policyInformation"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 系统通知---表格操作列 -->
+<script type="text/html" id="control-1">
+    <a class="table-control-btn" lay-event="content">详情</a>
+</script>
+
+<script>
+    layui.use(['index', 'laydate'], function() {
+        var table = layui.table,
+            laydate = layui.laydate,
+            admin = layui.admin,
+            config = layui.config,
+            account = config.getAccount();
+        // var pageLimit_dashoBoard = 5;
+        // window.onload = getClientWidth;
+        // 获取网页屏幕大小
+        function pageLimit_dashoBoard() {
+            if(document.body.clientWidth > 1450 ||document.body.offsetWidth > 1450
+                || window.screen.width > 1450 ||window.screen.availWidth > 1450){
+               return  13
+            }else {
+                return 5;
+            }
+        }
+
+
+        // 系统通知数据表格
+        var tableTodolist = table.render({
+            elem: '#tableTodolist',
+            id: 'tableTodolist',
+            url: admin.formatUrl('/api/industry/ProductManage/queryByPage'),
+            height: 'full-375',
+            // 格式化后台返回的数据
+            parseData: function(res) { //res 即为原始返回的数据
+                // 返回结果，进行渲染表格
+                var list = res.data.list;
+                for (var i = 0; i < list.length; i++) {
+                    list[i].name = decodeURIComponent(list[i].name)
+                }
+                return {
+                    "code": res.respCode, //解析接口状态
+                    "msg": res.message, //解析提示文本
+                    "count": res.data.count, //解析数据长度
+                    "data": list //解析数据列表
+                };
+            },
+            cols: [
+                [{
+                    field: 'name',
+                    title: '通知名称',
+                }, {
+                    field: 'mold',
+                    title: '通知类型',
+                    align: 'center',
+                    width: 110
+                }, {
+                    field: 'publish_Date',
+                    title: '发布时间',
+                    align: 'center',
+                    width: 110
+                }, {
+                    title: '操作',
+                    align: 'center',
+                    width: 100,
+                    sort: false,
+                    templet: '#control-1',
+                }]
+            ],
+            limit: pageLimit_dashoBoard,
+            cellMinWidth: 100,
+            page: {
+                layout: ['count','prev', 'page', 'next']
+            },
+            request: {
+                pageName: 'pageNo',
+                limitName: 'pageSize'
+            },
+        });
+
+        //系统通知---监听单元格单击事件
+        table.on('tool(tableTodolist)', function(obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+            if (layEvent === 'content') {
+                popContent(data)
+            }
+        });
+
+        // DONE: 侧边栏变化时刷新数据表格
+        // 将 table ID 存入数组
+        layui.admin.addTableCache('tableTodolist');
+
+        function popContent(data) {
+            var title = "通知详情";
+            sessionStorage.setItem("content", JSON.stringify(data));
+            admin.popupCenter({
+                title: title,
+                area: ['900px', '528px'],
+                path: 'components/tpl/announcement_tpl_content.html',
+                finish: function() {
+                    table.reload('tableTodolist', {
+                        where: {
+                            reload: new Date().getTime()
+                        }
+                    });
+                },
+                success: function() {
+                    //setFormValue(data);
+                }
+            });
+        }
+
+        // 日程事件
+        // laydate.render({
+        //     elem: '#policyInformation',
+        //     position: 'static',
+        //     // 不显示底部栏
+        //     showBottom: false,
+        //     theme: 'grid',
+        //     // 事件
+        //     mark: {
+        //         '2018-9-3': ''
+        //     },
+        //     done: function(value, date, endDate) {
+        // console.log(value); //得到日期生成的值，如：2017-08-18
+        // console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+        // console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
+        // 通过检测当前日期是否有事件来进行下一步处理
+        //     }
+        // });
+
+        // 政策数据表格
+        var policyInformation = table.render({
+            elem: '#policyInformation',
+            id: 'policyInformation',
+            url: admin.formatUrl('/api/industry/policy/listPolicy'),
+            height: 'full-375',
+            // 格式化后台返回的数据
+            parseData: function(res) { //res 即为原始返回的数据
+                // 返回结果，进行渲染表格
+                return {
+                    "code": res.respCode, //解析接口状态
+                    "msg": res.message, //解析提示文本
+                    "count": res.data.count, //解析数据长度
+                    "data": res.data.list //解析数据列表
+                };
+            },
+            cols: [
+                [{
+                    field: 'classifyName',
+                    title: '类型',
+                    align: 'center',
+                    width: 100,
+                    // event: 'handle',
+                    style: 'border:0px;cursor: pointer;'
+                }, {
+                    style: 'border:0px',
+                    field: 'policyName',
+                    title: '名称',
+                    templet: function(d) {
+                        return '<a class="layui-table-link" target="_blank" href=" ' +
+                            d.policyUrl + '">' + d.policyName + '<a/>';
+                    }
+                }, {
+                    style: 'border:0px',
+                    field: 'publishTime',
+                    title: '发布时间',
+                    align: 'center',
+                    width: 120
+                }]
+            ],
+            limit: pageLimit_dashoBoard,
+            page: {
+                layout: [ 'count', 'prev', 'page', 'next']
+            },
+            request: {
+                pageName: 'pageNo',
+                limitName: 'pageSize'
+            }
+        });
+        layui.admin.addTableCache('policyInformation');
+
+        // 获取任务信息
+        var taskInfoInit = function() {
+            admin.req('/api/authentic/task/selectTaskNumberByState', {
+                userId: account.usid
+            }, function(res) {
+                var elem = $('.tasks-info-container strong'),
+                    arr = [];
+                arr.push(res.data.underDealSize);
+                arr.push(res.data.auditSize);
+                arr.push(res.data.rejectSize);
+                arr.push(res.data.completeSize);
+                for (var i = 0; i < elem.length; i++) {
+                    elem[i].innerText = arr[i];
+                }
+            });
+        };
+        taskInfoInit();
+        $('.tasks-info-refresh').on('click', function() {
+            taskInfoInit();
+        });
+
+        /* // 获取跟踪任务
+         var taskTrackInit = function () {
+             admin.req('/api/activiti/repository/processInstances/track-list', {
+                 pageNo: 1,
+                 pageSize: 4,
+                 initiatorId: account.usid
+             }, function (res) {
+                 if (res.ok) {
+                     var tmp = res.data.list,
+                         tmpHtml = '';
+                     for (var i = 0; i < tmp.length; i++) {
+                         var tmpData = tmp[i],
+                             tmpDataName = tmpData.name ? tmpData.name : '暂无任务名称',
+                             tmpDataCurrentUsers = tmpData.currentUsers ? tmpData.currentUsers :
+                             '当前无处理人',
+                             tmpDataStartTimeStr = tmpData.startTimeStr ? tmpData.startTimeStr.split(
+                                 ' ')[
+                                 0].split('-').join('/') : '无时间';
+                         tmpHtml +=
+                             '<div class="tasks-track"><p>' + tmpDataName +
+                             '</p><span title="' + tmpDataCurrentUsers + '">' + tmpDataCurrentUsers +
+                             '</span><span>' + tmpDataStartTimeStr + '</span></div>';
+                     }
+                     if (tmpHtml === '') tmpHtml =
+                         '<div style="text-align: center;color: #999;">当前无跟踪任务</div>';
+                     $('.tasks-track-container').html(tmpHtml);
+                 } else {
+                     layer.msg('获取跟踪任务失败：' + res.message, {
+                         icon: 5
+                     });
+                 }
+             });
+         };*/
+        /*taskTrackInit();*/
+    });
+</script>

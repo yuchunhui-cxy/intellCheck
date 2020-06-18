@@ -1,0 +1,96 @@
+<!--
+File   : system_role_tpl_add_edit.html
+Created: Tuesday September 11th 2018 2:27:10 pm
+Author : yuchunyu97
+License: MIT License
+
+Copyright (c) 2018 yuchunyu97
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-----
+Last Modified: Thursday September 13th 2018 2:49:37 pm
+Modified By  : yuchunyu97 at <yuchunyu97@gmail.com>
+-----
+Description: 
+-----
+HISTORY:
+-->
+
+<div class="layui-tpl-container">
+    <div class="layui-form p-form">
+        <input type="text" name="type" id="type" style="display: none;">
+        <input type="text" name="rid" disabled="disabled" style="display: none;">
+        <div class="layui-form-item">
+            <label class="layui-form-label"><span style="color: red;">*</span> 角色名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="rname" placeholder="请输入角色名称" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-block">
+                <input type="text" name="rdesc" placeholder="请输入角色描述" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item" id="inp_search">
+            <label class="layui-form-label layui-form-labels">角色等级</label>
+            <div class="layui-input-block layui-input-blocks">
+                <select name="extInfo" id="select_roleHierarchy_name" lay-filter="select_roleHierarchy_name" />
+            </div>
+        </div>
+        <!-- 提交按钮 -->
+        <!-- 取消按钮 -->
+        <div class="layui-form-item" style="text-align: center;">
+            <button class="layui-btn layui-btn-normal" lay-submit lay-filter="menuSave-role">保存</button>
+            <button class="layui-btn layui-btn-primary" lay-submit lay-filter="popmenuCancle">取消</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    layui.use('form', function() {
+        var form = layui.form;
+        var admin = layui.admin;
+        form.render();
+
+        // 角色等级下拉框
+        roleHierarchyNameList()
+
+        function roleHierarchyNameList() {
+            var selectC = new Array(2);
+            admin.req('/api/sys/role/listLevel', {}, function(res) {
+                selectC[0] = window.extInfo;
+                var list = res.data;
+                var html = '<option value="" selected>请选择角色等级</option>';
+                $.each(list, function(i) {
+                    let isCheck = '';
+                    if (list[i].roleLevel == selectC[0]) isCheck = "selected";
+                    html += '<option ' + isCheck + ' value="' + list[i].id + '" >' + list[i]
+                        .roleLevelName +
+                        '</option>';
+                })
+                $('#select_roleHierarchy_name').append(html);
+                form.render('select');
+            }, {
+                method: 'DELETE'
+            });
+        }
+
+    })
+</script>

@@ -1,0 +1,265 @@
+/**
+ *
+ * 重写 layui card 样式
+ *
+ */
+
+.layui-card-header {
+    height: 44px;
+    line-height: 44px;
+    color: #181818;
+    border-bottom: 2px solid #EEEEEE;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.layui-card-body {
+    height: auto;
+    min-height: auto;
+}
+
+
+/* card header 右面的功能按钮 */
+
+.layui-card-header .layui-card-header-right-btn {
+    float: right;
+    color: #949494;
+    font-size: 14px;
+    font-weight: normal;
+    cursor: pointer;
+    margin-left: 10px;
+    height: 48px;
+    transition: color .3s;
+}
+
+.layui-card-header .layui-card-header-right-btn:hover {
+    color: rgba(85, 183, 255, 1);
+}
+
+
+/**
+ *
+ * 任务信息
+ *
+ */
+
+.tasks-info {
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* flex-direction: column; */
+}
+
+.tasks-info img {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto;
+    margin-top: 12px;
+    display: block;
+}
+@media screen and (min-width: 1450px) {
+    .tasks-info img {
+        width: 60px;
+        height: 60px;
+        margin-top: 24px;
+    }
+}
+
+.tasks-info strong {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0 auto;
+    margin-top: 8px;
+    display: block;
+    text-align: center;
+}
+
+.tasks-info span {
+    font-size: 16px;
+    color: #949494;
+    margin: 0 auto;
+    margin-bottom: 12px;
+    display: block;
+    text-align: center;
+}
+
+
+/**
+ *
+ * 跟踪任务
+ *
+ */
+
+.tasks-track-container {
+    overflow: hidden;
+    height: 138px;
+}
+
+@media screen and (min-width: 1450px) {
+    .tasks-track-container {
+        height: 162px;
+    }
+}
+
+.tasks-track {
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, .65);
+}
+
+.tasks-track p {
+    display: inline-block;
+    max-width: 48%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 380px) {
+    /* 适配 iPhone 5 小屏幕 */
+    .tasks-track p {
+        max-width: 32%;
+    }
+}
+
+.tasks-track span {
+    float: right;
+    margin-left: 8px;
+    width: 100px;
+    height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tasks-track a {
+    color: rgba(85, 183, 255, 1);
+    float: right;
+    margin-left: 8px;
+}
+
+.tasks-track a:hover {
+    color: rgba(85, 183, 255, .8);
+}
+
+
+/**
+ *
+ * 待办任务
+ * 重写 layui 表格样式
+ *
+ */
+
+/*.tableTodolist {
+    height: calc(50% - 100px);
+}*/
+
+/*
+.tableTodolist .layui-table td,
+.tableTodolist .layui-table th,
+.tableTodolist .layui-table-header,
+.tableTodolist .layui-table-page,
+.tableTodolist .layui-table-view,
+.tableTodolist .layui-table-box {
+    border: none;
+}
+
+.tableTodolist .layui-table thead tr {
+    background-color: #FAFAFA;
+    height: 42px;
+    color: rgba(0, 0, 0, .65);
+}
+
+.tableTodolist .layui-table thead th {
+    font-weight: bold;
+}
+
+.tableTodolist .layui-table-header {
+    background-color: #fff;
+}
+
+.tableTodolist .layui-table tbody tr {
+    border-bottom: 1px solid #EBEBEB;
+    height: 36px;
+    color: rgba(0, 0, 0, .65);
+}
+
+.tableTodolist .layui-table tbody tr:hover {
+    background-color: transparent;
+}
+
+.tableTodolist .layui-table-page {
+    margin-top: 0;
+    text-align: right;
+}
+
+.tableTodolist .layui-table-box {
+    margin-bottom: 0;
+}
+*/
+
+.layui-table td, .layui-table th{
+    font-size: 14px;
+}
+
+
+/**
+ *
+ * 政策信息
+ *
+ */
+/*
+.policyInformation {
+    !*height: 340px;*!
+}
+
+.policyInformation .layui-table td,
+.policyInformation .layui-table th,
+.policyInformation .layui-table-header,
+.policyInformation .layui-table-page,
+.policyInformation .layui-table-view,
+.policyInformation .layui-table-box {
+    border: none;
+}
+
+.policyInformation .layui-table thead tr {
+    background-color: #FAFAFA;
+    height: 42px;
+    color: rgba(0, 0, 0, .65);
+}
+
+.policyInformation .layui-table thead th {
+    font-weight: bold;
+}
+
+.policyInformation .layui-table-header {
+    background-color: #fff;
+}
+
+.policyInformation .layui-table tbody tr {
+    !* border-bottom: 1px solid #EBEBEB; *!
+    height: 36px;
+    color: rgba(0, 0, 0, .65);
+}
+
+.policyInformation .layui-table tbody tr:hover {
+    background-color: transparent;
+}
+
+.policyInformation .layui-table-page {
+    margin-top: 0;
+    text-align: right;
+}
+
+.policyInformation .layui-table-box {
+    margin-bottom: 0;
+}*/
+
+.layui-table-cell a.layui-table-link {
+    color: #666;
+}
+
+.layui-table-cell a.layui-table-link:hover {
+    color: #01AAED;
+}
